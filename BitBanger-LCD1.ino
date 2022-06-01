@@ -30,6 +30,7 @@ const int swPins[] = {
 };
 **/
 
+// Needed to reverse these
 const int swPins[] = {
   sw8, sw7, sw6, sw5, sw4, sw3, sw2, sw1
 };
@@ -61,11 +62,13 @@ void setup() {
   
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
-  Serial.begin(9600);
-  
   lcd.setCursor(0,0);
   lcd.print(compile_date);
+  
+  Serial.begin(9600);
   delay(1000);
+  Serial.println(compile_date);
+
   lcd.clear();
 }
 
@@ -95,8 +98,7 @@ void loop() {
       for( int i = 0; i < 8; i++){
         b += (swState[i] << (7-i));
       }
-      //lcd.write(b);
-      //Serial.println(b);
+      //lcd.write(b);   // Trying to not use the library
       print_binary(b, 8);
       Serial.println();
       //Duplicate above but manually
