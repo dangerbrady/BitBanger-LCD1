@@ -6,6 +6,7 @@
  
 // include the library code:
 #include <LiquidCrystal.h>
+const char compile_date[] = __DATE__ " " __TIME__;
 
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
@@ -63,7 +64,7 @@ void setup() {
   Serial.begin(9600);
   
   lcd.setCursor(0,0);
-  lcd.print("Hello World");
+  lcd.print(compile_date);
   delay(1000);
   lcd.clear();
 }
@@ -79,7 +80,7 @@ void loop() {
     swState[thisPin] = digitalRead(swPins[thisPin]);
   }
 
-  lcd.setCursor(curColPos,curRowPos);
+  //lcd.setCursor(curColPos,curRowPos); // This breaks programablity
 
   // Here is where we might do a command for BOTH buttons, such as sending
   //  a command (turn off the blinker)
